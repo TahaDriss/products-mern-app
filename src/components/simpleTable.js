@@ -4,7 +4,9 @@ const axios = require("axios");
 
 function addProduct(prod) {
   axios
-    .post("http://localhost:5000/products/add", prod)
+    .post("http://localhost:5000/products/add", prod, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(response => {
       // handle success
       console.log(response);
@@ -19,7 +21,9 @@ function addProduct(prod) {
 }
 function editProduct(prod) {
   axios
-    .post("http://localhost:5000/products/edit/" + prod._id, prod)
+    .post("http://localhost:5000/products/edit/" + prod._id, prod, {
+      headers: { Authorization: localStorage.getItem("token") }
+    })
     .then(response => {
       // handle success
       console.log(response);
@@ -33,8 +37,12 @@ function editProduct(prod) {
     });
 }
 function deleteProduct(prod) {
-  axios
-    .post("http://localhost:5000/products/delete/" + prod._id)
+  axios({
+    method: "post",
+    url: "http://localhost:5000/products/delete/" + prod._id,
+    responseType: "json",
+    headers: { Authorization: localStorage.getItem("token") }
+  })
     .then(response => {
       // handle success
       console.log(response);

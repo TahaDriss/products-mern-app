@@ -22,7 +22,8 @@ class List extends React.Component {
     axios({
       method: "get",
       url: "http://localhost:5000/products",
-      responseType: "json"
+      responseType: "json",
+      headers: { Authorization: localStorage.getItem("token") }
     })
       .then(response => {
         // handle success

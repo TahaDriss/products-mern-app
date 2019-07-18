@@ -12,7 +12,7 @@ router.post("/login", (req, res, err) => {
       if (bcrypte.compareSync(req.body.password, Object.password)) {
         console.log("Bienvenue : " + Object.email);
         const token = jwt.sign({ email: Object.email }, "A1B2", {
-          expiresIn: 1
+          expiresIn: 1000000
         });
         res.status(200).json({ success: true, token: token });
       } else res.status(401).json("Mauvais password");

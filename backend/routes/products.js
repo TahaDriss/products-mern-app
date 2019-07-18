@@ -4,7 +4,7 @@ var product = require("../models/product");
 
 const auth = require("../auth");
 
-router.get("/", async (req, res, next) => {
+router.get("/", auth.authentificate, async (req, res, next) => {
   product
     .find({})
     .then(data => {
@@ -21,7 +21,7 @@ router.get("/", async (req, res, next) => {
     });
 });
 
-router.post("/add", (req, res, next) => {
+router.post("/add", auth.authentificate, (req, res, next) => {
   let Product = new product();
   Product._id = req.body._id;
   Product.name = req.body.name;
@@ -47,7 +47,7 @@ router.post("/add", (req, res, next) => {
   });
 });
 
-router.post("/edit/:id", (req, res) => {
+router.post("/edit/:id", auth.authentificate, (req, res) => {
   let Product = {};
   let query = { _id: req.params.id };
   Product.name = req.body.name;
@@ -72,7 +72,7 @@ router.post("/edit/:id", (req, res) => {
   });
 });
 
-router.post("/delete/:id", (req, res, next) => {
+router.post("/delete/:id", auth.authentificate, (req, res, next) => {
   let query = { _id: req.params.id };
   product.remove(query, err => {
     if (err) {
