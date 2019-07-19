@@ -74,7 +74,7 @@ export default function SimpleTable(props) {
     <MaterialTable
       title="Products List"
       columns={columns}
-      data={[]}
+      data={data}
       editable={{
         onRowAdd: newData =>
           new Promise(resolve => {
