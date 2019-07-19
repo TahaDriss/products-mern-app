@@ -5,7 +5,7 @@ const axios = require("axios");
 
 class List extends React.Component {
   state = {
-    data: ""
+    data: []
   };
 
   componentDidMount() {
@@ -44,9 +44,7 @@ class List extends React.Component {
     const { data } = this.state;
     return (
       <>
-        {(() => {
-          if (data.length !== 0) return <MaterialTableDemo data={data} />;
-        })()}
+        <MaterialTableDemo data={data} />
       </>
     );
   }
